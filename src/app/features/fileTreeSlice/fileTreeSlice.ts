@@ -9,6 +9,7 @@ export interface IIinitialState {
   openFiles: IFile[];
   clickedFile: IClickedFile;
   activeId: string;
+  tapIdToClose:string;
 }
 
 const initialState: IIinitialState = {
@@ -18,6 +19,7 @@ const initialState: IIinitialState = {
     fileContent: "",
   },
   activeId: "",
+  tapIdToClose:"",
 };
 
 export const fileTreeSlice = createSlice({
@@ -74,6 +76,13 @@ export const fileTreeSlice = createSlice({
           : file
       );
     },
+    closeAllOpenFiles:(state)=>{
+      state.openFiles=[]
+      
+    },
+    setTapIDToCloseAction:(state,action:PayloadAction<string>)=>{
+      state.tapIdToClose=action.payload
+    },
   },
 });
 export const {
@@ -82,6 +91,8 @@ export const {
   setActiveIdAction,
   updateOpenFileContent,
   deleteOpenFile,
+  closeAllOpenFiles,
+  setTapIDToCloseAction,
 } = fileTreeSlice.actions;
 
 export default fileTreeSlice.reducer;

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import CloseIcon from "../SVG/CloseIcon";
 import RenderFileIcon from "../SVG/RenderFileIcon";
-import {  setActiveIdAction, setClickedFileAction,deleteOpenFile } from "../../app/features/fileTreeSlice/fileTreeSlice";
+import {  setActiveIdAction, setClickedFileAction,deleteOpenFile, setTapIDToCloseAction } from "../../app/features/fileTreeSlice/fileTreeSlice";
 import type { RootState } from "../../app/store";
 import type { IFile } from "../../interfaces";
 
@@ -29,6 +29,7 @@ const OpenFileBarTap = ({file}:IProps) => {
     <div
       className="flex items-center space-x-1   p-2 hover:bg-gray-700 cursor-pointer "
       onClick={onClickHandler}
+      onContextMenu={()=>dispatch(setTapIDToCloseAction(id))}
       style={{
         borderTop: id == activeId ? "2px solid #cf6ccf" : "2px solid transparent" ,
       }}
