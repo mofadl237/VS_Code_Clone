@@ -7,26 +7,26 @@ interface IProps {
 }
 
 const pathIcon: Record<string, string> = {
-  jsx: "/public/Icons/react",
-  tsx: "/public/Icons/react_ts",
-  js: "/public/Icons/javascript",
-  ts: "/public/Icons/ts",
-  html: "/public/Icons/html",
-  css: "/public/Icons/css",
+  jsx: "/Icons/react",
+  tsx: "/Icons/react_ts",
+  js: "/Icons/javascript",
+  ts: "/Icons/ts",
+  html: "/Icons/html",
+  css: "/Icons/css",
 
   //Folder
-  node_modules: "/public/Icons/folder-node",
-  src: "/public/Icons/folder-src",
+  node_modules: "/Icons/folder-node",
+  src: "/Icons/folder-src",
   
-  components: "/public/Icons/folder-components",
-  Components: "/public/Icons/folder-components",
-  public: "/public/Icons/folder-public",
-  data: "/public/Icons/folder-database",
-  UI: "/public/Icons/folder-ui",
-  ui: "/public/Icons/folder-ui",
-  interface: "/public/Icons/folder-interface",
+  components: "/Icons/folder-components",
+  Components: "/Icons/folder-components",
+  public: "/Icons/folder-public",
+  data: "/Icons/folder-database",
+  UI: "/Icons/folder-ui",
+  ui: "/Icons/folder-ui",
+  interface: "/Icons/folder-interface",
 };
-
+//Default Search In Public
 const RenderFileIcon = ({ filename, isFolder, isOpen }: IProps) => {
   //**2- Handler */
   const ext = filename.split(".").pop();

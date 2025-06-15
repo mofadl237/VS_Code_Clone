@@ -36,7 +36,7 @@ const OpenFileTap = () => {
       
     </div>
   ) : (
-    <div className="flex items-center justify-center h-full "><img className="w-1/3 " src="/public/Icons/vscode.svg"/></div>
+    <div className="flex items-center justify-center h-full "><img className="w-1/3 " src="/Icons/vscode.svg"/></div>
   )
   
 )
