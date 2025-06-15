@@ -1,29 +1,39 @@
 import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs/components/prism-core";
+// import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-markup";
-import "prismjs/themes/prism.css"
 import "prismjs/themes/prism.css";
-import 'prismjs/components/prism-css';
+import "prismjs/themes/prism.css";
+import "prismjs/components/prism-css";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../app/store";
-import { setClickedFileAction, updateOpenFileContent } from "../app/features/fileTreeSlice/fileTreeSlice";
+import {
+  setClickedFileAction,
+  updateOpenFileContent,
+} from "../app/features/fileTreeSlice/fileTreeSlice";
 
 import type { IFile } from "../interfaces";
 import { setDataUpdate } from "../app/features/fileTreeData/fileTreeData";
 
-
+import Prism from "prismjs";
 
 const ContentSyntax = () => {
   /**1- state */
-  const {activeId}=useSelector((state:RootState)=>state.fileTree)
+  const { activeId } = useSelector((state: RootState) => state.fileTree);
   const dispatch = useDispatch();
-const {fileTreeData}=useSelector((state:RootState)=>state.fileTreeData)
+  const { fileTreeData } = useSelector(
+    (state: RootState) => state.fileTreeData
+  );
   const { fileContent, fileName } = useSelector(
     (state: RootState) => state.fileTree.clickedFile
   );
-  
 
-  const lineNumbers = fileContent && fileContent.split("\n").map((_, i) => i + 1).join("\n");
+  const lineNumbers =
+    fileContent &&
+    fileContent
+      .split("\n")
+      .map((_, i) => i + 1)
+      .join("\n");
+
 
   //*2- handler
   const recursiveFileTreeContent = (
@@ -52,42 +62,49 @@ const {fileTreeData}=useSelector((state:RootState)=>state.fileTreeData)
   };
   //*3- render
   return (
-
-
     <div className="flex">
-      
-      {activeId && <pre
-        style={{
-          padding: "10px 8px",
-          backgroundColor: "transparent",
-          
-          
-          
-        }}
-      >
-        {lineNumbers}
-      </pre>}
+      {activeId && (
+        <pre
+          style={{
+            padding: "10px 8px",
+            backgroundColor: "transparent",
+          }}
+        >
+          {lineNumbers}
+        </pre>
+      )}
 
-    <Editor
-      value={String(fileContent)}
-      onValueChange={(updatedCode) => {
-        const updatedTree = recursiveFileTreeContent(fileTreeData, updatedCode);
-        dispatch(setDataUpdate(updatedTree));
-        dispatch(setClickedFileAction({fileName, fileContent: updatedCode }));
-         dispatch(updateOpenFileContent({id:activeId , content:updatedCode}))
-        // recursiveFileTreeContent(fileTree,updatedCode)
-        // dispatch(setDataUpdate({name:fileName, isFolder:false ,id: activeId ,content:updatedCode}))
-      }}
-      highlight={(code) => highlight(code, languages.markup, "html")}
-      padding={10}
-      style={{
-        fontFamily: '"Fira code", "Fira Mono", monospace',
-        fontSize: 16,
-        backgroundColor: "transparent",
-        width: "100",
-        height: "100",
-      }}
-    />
+      <Editor
+        value={String(fileContent)}
+        onValueChange={(updatedCode) => {
+          const updatedTree = recursiveFileTreeContent(
+            fileTreeData,
+            updatedCode
+          );
+          dispatch(setDataUpdate(updatedTree));
+          dispatch(
+            setClickedFileAction({ fileName, fileContent: updatedCode })
+          );
+          dispatch(
+            updateOpenFileContent({ id: activeId, content: updatedCode })
+          );
+          // recursiveFileTreeContent(fileTree,updatedCode)
+          // dispatch(setDataUpdate({name:fileName, isFolder:false ,id: activeId ,content:updatedCode}))
+        }}
+        //highlight={(code) => highlight(code, languages.markup, "html")}
+
+        highlight={(code) =>
+          Prism.highlight(code, Prism.languages.markup, "html")
+        }
+        padding={10}
+        style={{
+          fontFamily: '"Fira code", "Fira Mono", monospace',
+          fontSize: 16,
+          backgroundColor: "transparent",
+          width: "100",
+          height: "100",
+        }}
+      />
     </div>
   );
 };
