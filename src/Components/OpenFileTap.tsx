@@ -44,8 +44,6 @@ const OpenFileTap = () => {
 
 export default OpenFileTap;
 
-//Copy
-
 /**
  * import { useSelector } from "react-redux";
 import type { RootState } from "../app/store";

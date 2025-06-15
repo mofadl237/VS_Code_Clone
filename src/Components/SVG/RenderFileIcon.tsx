@@ -39,9 +39,9 @@ const RenderFileIcon = ({ filename, isFolder, isOpen }: IProps) => {
     return <img src={isPath} className="w-5 " />;
   }
   if (isFolder && isOpen)
-    return <img src="/public/Icons/folder-base-open.svg" className="w-5 " />;
+    return <img src="/Icons/folder-base-open.svg" className="w-5 " />;
   if (isFolder && !isOpen)
-    return <img src="/public/Icons/folder-base.svg" className="w-5 " />;
+    return <img src="/Icons/folder-base.svg" className="w-5 " />;
 
   return <File/>
 };
